@@ -1,0 +1,24 @@
+[package]
+name = "reqwest_test"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.11", features = ["blocking", "json"] }
+
+[profile.p1]
+inherits = "dev"
+
+# The debug-assertions setting controls the -C debug-assertions flag
+# which turns cfg(debug_assertions) conditional compilation on or off.
+# Debug assertions are intended to include runtime validation which is
+# only available in debug/development builds. These may be things that
+# are too expensive or otherwise undesirable in a release build.
+# Debug assertions enables the debug_assert! macro in the standard library.
+
+# Open debug-assertions on will result in a panic at runtime
+# thread 'main' panicked at 'Cannot drop a runtime in a context where blocking is not allowed. This happens when a runtime is dropped from within an asynchronous context.'
+debug-assertions = false
